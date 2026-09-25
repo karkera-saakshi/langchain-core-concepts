@@ -1,9 +1,14 @@
-from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_huggingface import ChatHuggingFace, HuggingFaceEndpoint
 from dotenv import load_dotenv
 
 load_dotenv()
 
-model = ChatGoogleGenerativeAI(model = 'gemini-3.8-flash')
+llm = HuggingFaceEndpoint(
+    repo_id="Qwen/Qwen2.5-Coder-32B-Instruct",
+    task="text-generation",
+)
+
+model = ChatHuggingFace(llm=llm)
 
 while True:
     user_input = input("You: ")
